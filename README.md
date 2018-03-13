@@ -110,7 +110,7 @@ $ /bin/bash scripts/linux/download_libs.sh
 # oF - .mkファイル編集
 
 ```
-nano libs/openFrameworksCompiled/project/linuxarmv6l/config.linuxarmv6l.default.mk
+$ sudo nano libs/openFrameworksCompiled/project/linuxarmv6l/config.linuxarmv6l.default.mk
 ```
 | 変更前 | 変更後 |
 |:-|:-|
@@ -138,13 +138,15 @@ $ cd examples/templates/emptyExample/
 $ make -j2 -s
 ```
 
+ここ結構時間かかる。
+
 ```
 $ make run
 ```
 
 コンソール上に、ofLogNoticeなどのログが表示されれば問題無し。
 
-# oF - 画面に出してみる
+# oF - 画面で確認してみる。
 
 ログイン設定を変更する。
 
