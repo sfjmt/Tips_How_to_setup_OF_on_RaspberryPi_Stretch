@@ -2,6 +2,7 @@
 * RaspberryPi 3 Model B のセットアップ手順
 * openframeworks(0.9.8)をRaspberryPi 3 Model B で動かす手順。
 * [このoFフォーラム](https://forum.openframeworks.cc/t/compiling-of-in-raspbian-stretch/27562/15)を参考にしている。これとは別で検証をした人のログが[これ](https://forum.openframeworks.cc/t/compiling-of-in-raspbian-stretch/27562/32)。
+* [CreativeApplicationsNetに提供されたサンプル群](https://github.com/openFrameworks-arm/RaspberryPiGuideCAN)
 
 # イメージをSDカードに焼く
 1. SDカードを準備する。[Transcend 32GB MicroSDHC Class10 UHS-1 Memory Card with Adapter 60 MB/s (TS32GUSDU1)](https://www.amazon.com/Transcend-MicroSDHC-Class10-Adapter-TS32GUSDU1/dp/B00APCMMDG) などのClass10を使用する。
@@ -163,3 +164,30 @@ $ sudo reboot
 ```
 
 外付けディスプレイを接続し、再度、任意のファイルを`make run`する。oFアプリがデスクトップに表示されることを確認してみる。
+
+# oF - Macで開発したプロジェクトをRaspberryPiへコピー
+
+RaspberryPiで開発を行うのはやめた方がいい。以下は、Macで開発したプロジェクトをRaspberryPiに移動させ、コンパイルする流れ。
+
+プロジェクトフォルダごと移動。
+
+```
+$ scp -r [自分のoFプロジェクトフォルダ] pi@192.168.xx.xxx:~/openFrameworks/apps/devApps/
+```
+
+RaspberryPi上で、以下を実行。Makefileをコピー。
+
+```
+$ cd ~/openFrameworks
+$ cp scripts/templates/linuxarmv6l/Makefile apps/devApps/自分のoFプロジェクトフォルダ/
+$ cd apps/devApps/自分のoFプロジェクトフォルダ/
+```
+
+コンパイルする。
+
+```
+$ make -j2 -s
+$ make run
+```
+
+※プロジェクトをコピーする方法ではなく、[クロスコンパイル](https://forum.openframeworks.cc/t/cross-compiler-for-of-0-9-0-jessie-arm6-rpi1/21336)する方法もあるみたい。
