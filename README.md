@@ -191,3 +191,13 @@ $ make run
 ```
 
 ※プロジェクトをコピーする方法ではなく、[クロスコンパイル](https://forum.openframeworks.cc/t/cross-compiler-for-of-0-9-0-jessie-arm6-rpi1/21336)する方法もあるみたい。
+
+# oF - Macで開発したアドオンをRaspberryPiへコピー
+
+自作アドオンをRaspberryPiへコピーする流れ。※基本的にプロジェクトを移動させる方法と同じ。
+
+```
+$ scp -r [自分のoFアドオン] pi@192.168.xx.xxx:~/openFrameworks/addons/
+```
+
+アドオン内のexampleをコンパイルする場合は、前項の「oF - Macで開発したプロジェクトをRaspberryPiへコピー」を参照すること。
