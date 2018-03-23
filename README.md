@@ -201,3 +201,87 @@ $ scp -r [自分のoFアドオン] pi@192.168.xx.xxx:~/openFrameworks/addons/
 ```
 
 アドオン内のexampleをコンパイルする場合は、前項の「oF - Macで開発したプロジェクトをRaspberryPiへコピー」を参照すること。
+
+# oF - アプリ自動起動
+
+* systemdを用いた自動起動の手順。
+* シェルスクリプトでoFアプリを起動させるようにし、起動時にシェルスクリプトを実行させる方法をとっている。
+
+#### 自動起動用のシェルスクリプト(.sh)作成。
+
+```
+$ sudo nano /opt/hello.sh
+```
+
+以下を記述。
+
+```
+#!/bin/bash
+
+cd
+cd /home/pi/openFrameworks/apps/devApps/YourProjectName/
+make run
+
+while true
+do
+done
+```
+
+#### シェルスクリプトに実行権限を与える。
+
+```
+$ sudo chmod 0755 /opt/hello.sh
+```
+
+#### hello.serviceファイル(Unit定義ファイル)を作成。
+
+```
+$ sudo nano /etc/systemd/system/hello.service
+```
+
+以下を記述。
+
+```
+[Unit]
+Description = hello daemon
+
+[Service]
+ExecStart = /opt/hello.sh
+Restart = always
+Type = simple
+
+[Install]
+WantedBy = multi-user.target
+```
+
+設定ファイルの準備が整ったら、以下を順に実行する。再起動し、アプリが自動で起動したらOK。
+
+1. UnitがServiceとして認識されたかどうかの確認
+```
+$ sudo systemctl list-unit-files --type=service | grep hello
+```
+
+2. サービス開始
+```
+$ sudo systemctl start hello
+```
+
+3. サービス停止
+```
+$ sudo systemctl stop hello
+```
+
+4. 自動起動 ON
+```
+$ sudo systemctl enable hello
+```
+
+5. 自動起動 OFF
+```
+$ sudo systemctl disable hello
+```
+
+6. 再起動し、任意のアプリが自動起動するか確認。
+```
+$ sudo reboot
+```
