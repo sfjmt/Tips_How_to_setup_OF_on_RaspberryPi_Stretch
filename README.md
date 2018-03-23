@@ -276,12 +276,12 @@ $ sudo systemctl stop hello
 $ sudo systemctl enable hello
 ```
 
-5. 自動起動 OFF
-```
-$ sudo systemctl disable hello
-```
-
-6. 再起動し、任意のアプリが自動起動するか確認。
+5. 再起動し、任意のアプリが自動起動するか確認。
 ```
 $ sudo reboot
+```
+
+※ 自動起動 OFF
+```
+$ sudo systemctl disable hello
 ```
