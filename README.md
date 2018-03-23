@@ -207,6 +207,10 @@ $ scp -r [自分のoFアドオン] pi@192.168.xx.xxx:~/openFrameworks/addons/
 * systemdを用いた自動起動の手順。
 * シェルスクリプトでoFアプリを起動させるようにし、起動時にシェルスクリプトを実行させる方法をとっている。
 
+以下を参考にした。
+* http://hendigi.karaage.xyz/2016/11/auto-boot/
+* https://qiita.com/DQNEO/items/0b5d0bc5d3cf407cb7ff
+
 #### 自動起動用のシェルスクリプト(.sh)作成。
 
 ```
